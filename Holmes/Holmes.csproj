@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>James Craig</Authors>
+    <Company />
+    <Description>Holmes is a database analysis library designed to suggest improvements and optimizations. Supports .Net Core as well as full .Net.</Description>
+    <PackageLicenseUrl>https://github.com/JaCraig/Holmes/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/JaCraig/Holmes</PackageProjectUrl>
+    <PackageTags>Holmes;SQL;Database;Analysis;Optimization</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.6\Holmes.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.6\Holmes.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Canister.IoC" Version="1.0.42" />
+    <PackageReference Include="SQLHelper.DB" Version="1.0.25" />
+  </ItemGroup>
+
+</Project>
