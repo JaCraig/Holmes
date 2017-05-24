@@ -8,7 +8,7 @@ Holmes is a database analysis library. It scans a database and returns suggestio
 
 Holmes relies on [Canister](https://github.com/JaCraig/Canister) in order to hook itself up. In order for this to work, you must do the following at startup:
 
-Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
+    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
                     .RegisterHolmes()
                     .Build();
 					
@@ -45,7 +45,7 @@ However you can easily add your own analyzer by simply creating a class that inh
 
     Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
                     .RegisterHolmes()
-					.AddAssembly(typeof(MyAnalyzer).GetTypeInfo().Assembly)
+                    .AddAssembly(typeof(MyAnalyzer).GetTypeInfo().Assembly)
                     .Build();
 					
 The system will then pick it up automatically and run it as well. For simple analyzers there is also an AnalyzerBaseClass that will simplify the process of setting up your analyzer. The IAnalyzer interface itself is rather simple though:
@@ -79,7 +79,7 @@ The SupportedFactory property is the DbProviderFactory that this analyzer should
 
 The library is available via Nuget with the package name "Holmes". To install it run the following command in the Package Manager Console:
 
-Install-Package Holmes
+    Install-Package Holmes
 
 ## Build Process
 
