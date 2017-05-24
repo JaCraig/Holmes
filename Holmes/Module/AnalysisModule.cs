@@ -16,6 +16,8 @@ limitations under the License.
 
 using Canister.Interfaces;
 using Holmes.Interfaces;
+using Holmes.Providers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Holmes.Module
 {
@@ -39,6 +41,7 @@ namespace Holmes.Module
             if (bootstrapper == null)
                 return;
             bootstrapper.RegisterAll<IAnalyzer>();
+            bootstrapper.Register<ProviderManager>(ServiceLifetime.Singleton);
         }
     }
 }

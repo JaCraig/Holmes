@@ -14,66 +14,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
-using Holmes.Interfaces;
+using Holmes.Providers;
 using SQLHelper.HelperClasses.Interfaces;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 
 namespace Holmes
 {
-    public class Sherlock
+    /// <summary>
+    /// Main class
+    /// </summary>
+    public static class Sherlock
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Sherlock"/> class.
-        /// </summary>
-        public Sherlock()
-            : this(new List<IAnalyzer>())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Sherlock"/> class.
-        /// </summary>
-        /// <param name="analyzers">The analyzers.</param>
-        public Sherlock(IEnumerable<IAnalyzer> analyzers)
-        {
-            Analyzers = new ListMapping<DbProviderFactory, IAnalyzer>();
-            foreach (var Analyzer in analyzers)
-            {
-                Analyzers.Add(Analyzer.SupportedFactory, Analyzer);
-            }
-        }
-
-        /// <summary>
-        /// Gets the analyers.
-        /// </summary>
-        /// <value>The analyers.</value>
-        private ListMapping<DbProviderFactory, IAnalyzer> Analyzers { get; }
-
         /// <summary>
         /// Analyzes the specified connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>The results</returns>
-        public IEnumerable<Finding> Analyze(IConnection connection)
+        public static IEnumerable<Finding> Analyze(IConnection connection)
         {
-            if (!Analyzers.ContainsKey(connection.Factory))
-                return new List<Finding>();
-            SQLHelper.SQLHelper Batch = new SQLHelper.SQLHelper(connection);
-            var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
-            for (int x = 0; x < AnalyzersUsed.Length; ++x)
-            {
-                AnalyzersUsed[x].AddQuery(Batch);
-            }
-            var Result = Batch.Execute();
-            var ReturnValue = new List<Finding>();
-            for (int x = 0; x < AnalyzersUsed.Length; ++x)
-            {
-                ReturnValue.Add(AnalyzersUsed[x].Analyze(Result[x]));
-            }
-            return ReturnValue;
+            return Canister.Builder.Bootstrapper.Resolve<ProviderManager>().Analyze(connection);
         }
     }
 }
