@@ -8,13 +8,13 @@ using Xunit;
 
 namespace Holmes.Tests.Providers.SQLServer
 {
-    public class MissingIndexTests : TestingFixture
+    public class ExpensiveQueryTests : TestingFixture
     {
         [Fact]
         public void AddQuery()
         {
             SQLHelper.SQLHelper TestBatch = new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance);
-            var TestObject = new MissingIndex();
+            var TestObject = new ExpensiveQueries();
             TestObject.AddQuery(TestBatch);
             Assert.Equal(1, TestBatch.Count);
         }
@@ -22,7 +22,7 @@ namespace Holmes.Tests.Providers.SQLServer
         [Fact]
         public void Analyze()
         {
-            var TestObject = new MissingIndex();
+            var TestObject = new ExpensiveQueries();
             IEnumerable<dynamic> Data = new dynamic[] {
                 new Dynamo(new {
                     TableName = "Table1",

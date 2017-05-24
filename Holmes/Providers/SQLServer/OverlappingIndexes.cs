@@ -97,7 +97,7 @@ ORDER BY MD1.SchemaName,MD1.TableName,MD1.IndexName";
         {
             return results.ForEach(x =>
             {
-                return new Finding(string.Format("Index {0} overlaps with index {1}. Consider removing one of them.", x.IndexName, x.OverLappingIndex),
+                return new Finding(string.Format("Index {0} overlaps with index {1}. Consider removing one of them if not needed.", x.IndexName, x.OverLappingIndex),
                     x,
                     "");
             });

@@ -53,5 +53,14 @@ namespace Holmes
         /// </summary>
         /// <value>The text of the finding.</value>
         public string Text { get; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }
