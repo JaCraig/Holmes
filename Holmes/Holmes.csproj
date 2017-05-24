@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Canister.IoC" Version="1.0.42" />
-    <PackageReference Include="SQLHelper.DB" Version="1.0.25" />
+    <PackageReference Include="SQLHelper.DB" Version="1.0.26" />
   </ItemGroup>
 
 </Project>
