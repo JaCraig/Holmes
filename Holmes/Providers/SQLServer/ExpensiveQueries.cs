@@ -43,7 +43,7 @@ namespace Holmes.Providers.SQLServer
 ((CASE qs.statement_end_offset
 WHEN -1 THEN DATALENGTH(qt.TEXT)
 ELSE qs.statement_end_offset
-END - qs.statement_start_offset)/2)+1),
+END - qs.statement_start_offset)/2)+1) as [query_text],
 qs.execution_count,
 qs.total_logical_reads, qs.last_logical_reads,
 qs.total_logical_writes, qs.last_logical_writes,
