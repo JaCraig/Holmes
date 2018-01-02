@@ -7,7 +7,7 @@
     <!-- for Team City -->
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
     <!-- if not set -->
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>James Craig</Authors>
     <Company />
@@ -15,20 +15,20 @@
     <PackageLicenseUrl>https://github.com/JaCraig/Holmes/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/JaCraig/Holmes</PackageProjectUrl>
     <PackageTags>Holmes;SQL;Database;Analysis;Optimization</PackageTags>
-    <Version>1.0.$(BuildNumber)</Version>
+    <Version>2.0.$(BuildNumber)</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.6\Holmes.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\Holmes.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.6\Holmes.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\Holmes.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Canister.IoC" Version="1.0.46" />
-    <PackageReference Include="SQLHelper.DB" Version="1.0.33" />
+    <PackageReference Include="Canister.IoC" Version="2.0.0" />
+    <PackageReference Include="SQLHelper.DB" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
