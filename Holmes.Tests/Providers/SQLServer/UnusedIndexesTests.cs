@@ -32,7 +32,7 @@ namespace Holmes.Tests.Providers.SQLServer
             };
             var Results = TestObject.Analyze(Data);
             Assert.NotEmpty(Results);
-            Assert.Equal(1, Results.Count());
+            Assert.Single(Results);
         }
     }
 }

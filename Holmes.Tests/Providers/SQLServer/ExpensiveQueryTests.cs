@@ -3,7 +3,6 @@ using Holmes.Providers.SQLServer;
 using Holmes.Tests.BaseClasses;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using Xunit;
 
 namespace Holmes.Tests.Providers.SQLServer
@@ -31,7 +30,7 @@ namespace Holmes.Tests.Providers.SQLServer
             };
             var Results = TestObject.Analyze(Data);
             Assert.NotEmpty(Results);
-            Assert.Equal(1, Results.Count());
+            Assert.Single(Results);
         }
     }
 }
