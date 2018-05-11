@@ -45,6 +45,7 @@ namespace Holmes.Tests.BaseClasses
                         TempCommand.Open();
                         TempCommand.ExecuteNonQuery();
                     }
+                    catch { }
                     finally { TempCommand.Close(); }
                 }
             }
@@ -76,6 +77,7 @@ namespace Holmes.Tests.BaseClasses
                         TempCommand.Open();
                         TempCommand.ExecuteNonQuery();
                     }
+                    catch { }
                     finally { TempCommand.Close(); }
                 }
             }
