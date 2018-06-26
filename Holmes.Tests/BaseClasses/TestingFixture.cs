@@ -3,7 +3,8 @@ using FileCurator.Registration;
 using Holmes.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SQLHelper.ExtensionMethods;
+using SQLHelperDB;
+using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -84,7 +85,7 @@ namespace Holmes.Tests.BaseClasses
             var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string Query in Queries)
             {
-                new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance)
+                new SQLHelper(Configuration, SqlClientFactory.Instance)
                     .CreateBatch()
                     .AddQuery(CommandType.Text, Query)
                     .ExecuteScalar<int>();

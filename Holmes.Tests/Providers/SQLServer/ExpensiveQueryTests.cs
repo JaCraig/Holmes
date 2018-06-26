@@ -1,6 +1,7 @@
 ﻿using BigBook;
 using Holmes.Providers.SQLServer;
 using Holmes.Tests.BaseClasses;
+using SQLHelperDB;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Xunit;
@@ -12,7 +13,7 @@ namespace Holmes.Tests.Providers.SQLServer
         [Fact]
         public void AddQuery()
         {
-            SQLHelper.SQLHelper TestBatch = new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance);
+            SQLHelper TestBatch = new SQLHelper(Configuration, SqlClientFactory.Instance);
             var TestObject = new ExpensiveQueries();
             TestObject.AddQuery(TestBatch);
             Assert.Equal(1, TestBatch.Count);

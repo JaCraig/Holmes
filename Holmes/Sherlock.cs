@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Holmes.Providers;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 
 namespace Holmes

@@ -16,7 +16,8 @@ limitations under the License.
 
 using BigBook;
 using Holmes.Interfaces;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -64,7 +65,7 @@ namespace Holmes.Providers
         {
             if (!Analyzers.ContainsKey(connection.Factory))
                 return new List<Finding>();
-            SQLHelper.SQLHelper Batch = new SQLHelper.SQLHelper(connection);
+            SQLHelper Batch = new SQLHelper(connection);
             var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
             for (int x = 0; x < AnalyzersUsed.Length; ++x)
             {

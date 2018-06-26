@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Holmes.Interfaces;
+using SQLHelperDB;
 using System.Collections.Generic;
 using System.Data.Common;
 
@@ -50,7 +51,7 @@ namespace Holmes.BaseClasses
         /// </summary>
         /// <param name="batch">The batch.</param>
         /// <returns>This.</returns>
-        public IAnalyzer AddQuery(SQLHelper.SQLHelper batch)
+        public IAnalyzer AddQuery(SQLHelper batch)
         {
             batch.AddQuery(QueryString, System.Data.CommandType.Text);
             return this;

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using SQLHelperDB;
 using System.Collections.Generic;
 using System.Data.Common;
 
@@ -35,7 +36,7 @@ namespace Holmes.Interfaces
         /// </summary>
         /// <param name="batch">The batch.</param>
         /// <returns>This.</returns>
-        IAnalyzer AddQuery(SQLHelper.SQLHelper batch);
+        IAnalyzer AddQuery(SQLHelper batch);
 
         /// <summary>
         /// Analyzes the specified connection's source database.
