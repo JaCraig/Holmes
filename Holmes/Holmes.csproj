@@ -12,7 +12,7 @@
     <Authors>James Craig</Authors>
     <Company />
     <Description>Holmes is a database analysis library designed to suggest improvements and optimizations. Supports .Net Core as well as full .Net.</Description>
-    <PackageLicenseUrl>https://github.com/JaCraig/Holmes/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Holmes</PackageProjectUrl>
     <PackageTags>Holmes;SQL;Database;Analysis;Optimization</PackageTags>
     <Version>2.0.$(BuildNumber)</Version>
@@ -27,8 +27,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Canister.IoC" Version="2.1.2" />
-    <PackageReference Include="SQLHelper.DB" Version="2.0.11" />
+    <PackageReference Include="Canister.IoC" Version="2.1.3" />
+    <PackageReference Include="SQLHelper.DB" Version="2.0.13" />
   </ItemGroup>
 
 </Project>
