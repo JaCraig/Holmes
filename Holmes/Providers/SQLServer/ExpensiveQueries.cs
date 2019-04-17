@@ -33,13 +33,13 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory SupportedFactory => SqlClientFactory.Instance;
+        public override DbProviderFactory SupportedFactory { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the query string.
         /// </summary>
         /// <value>The query string.</value>
-        protected override string QueryString => @"SELECT TOP 25 SUBSTRING(qt.TEXT, (qs.statement_start_offset/2)+1,
+        protected override string QueryString { get; } = @"SELECT TOP 25 SUBSTRING(qt.TEXT, (qs.statement_start_offset/2)+1,
 ((CASE qs.statement_end_offset
 WHEN -1 THEN DATALENGTH(qt.TEXT)
 ELSE qs.statement_end_offset

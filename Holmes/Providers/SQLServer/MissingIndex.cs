@@ -33,13 +33,13 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory SupportedFactory => SqlClientFactory.Instance;
+        public override DbProviderFactory SupportedFactory { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the query string.
         /// </summary>
         /// <value>The query string.</value>
-        protected override string QueryString => @"SELECT TOP 25
+        protected override string QueryString { get; } = @"SELECT TOP 25
 dm_mid.database_id AS DatabaseID,
 dm_migs.avg_user_impact*(dm_migs.user_seeks+dm_migs.user_scans) Avg_Estimated_Impact,
 dm_migs.last_user_seek AS Last_User_Seek,

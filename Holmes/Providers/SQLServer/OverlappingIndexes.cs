@@ -33,13 +33,13 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory SupportedFactory => SqlClientFactory.Instance;
+        public override DbProviderFactory SupportedFactory { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the query string.
         /// </summary>
         /// <value>The query string.</value>
-        protected override string QueryString => @";WITH MyDuplicate AS (SELECT
+        protected override string QueryString { get; } = @";WITH MyDuplicate AS (SELECT
 Sch.[name] AS SchemaName,
 Obj.[name] AS TableName,
 Idx.[name] AS IndexName,
