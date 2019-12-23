@@ -7,7 +7,7 @@
     <!-- for Team City -->
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
     <!-- if not set -->
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>James Craig</Authors>
     <Company />
@@ -15,7 +15,8 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Holmes</PackageProjectUrl>
     <PackageTags>Holmes;SQL;Database;Analysis;Optimization</PackageTags>
-    <Version>2.0.$(BuildNumber)</Version>
+    <Version>3.0.$(BuildNumber)</Version>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,8 +28,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Canister.IoC" Version="2.1.5" />
-    <PackageReference Include="SQLHelper.DB" Version="2.0.15" />
+    <PackageReference Include="Canister.IoC" Version="3.0.0" />
+    <PackageReference Include="SQLHelper.DB" Version="2.0.18" />
   </ItemGroup>
 
 </Project>

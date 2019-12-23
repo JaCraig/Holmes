@@ -65,7 +65,7 @@ namespace Holmes.Providers
         {
             if (!Analyzers.ContainsKey(connection.Factory))
                 return new List<Finding>();
-            SQLHelper Batch = new SQLHelper(connection);
+            var Batch = new SQLHelper(connection);
             var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
             for (int x = 0; x < AnalyzersUsed.Length; ++x)
             {

@@ -16,6 +16,7 @@ limitations under the License.
 
 using Holmes.Providers;
 using SQLHelperDB.HelperClasses.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Holmes
@@ -32,7 +33,7 @@ namespace Holmes
         /// <returns>The results</returns>
         public static IEnumerable<Finding> Analyze(IConnection connection)
         {
-            return Canister.Builder.Bootstrapper.Resolve<ProviderManager>().Analyze(connection);
+            return Canister.Builder.Bootstrapper?.Resolve<ProviderManager>().Analyze(connection) ?? Array.Empty<Finding>();
         }
     }
 }
