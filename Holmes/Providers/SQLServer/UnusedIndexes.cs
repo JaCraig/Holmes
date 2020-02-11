@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Holmes.BaseClasses;
 using Holmes.Interfaces;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Holmes.Providers.SQLServer
 {
@@ -74,12 +74,7 @@ ORDER BY (dm_ius.user_scans + dm_ius.user_lookups) DESC";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.ForEach(x =>
-            {
-                return new Finding(string.Format("Potential index ({0}) for removal for {1}.", x.IndexName, x.ObjectName),
-                    x,
-                    x.drop_statement);
-            });
+            return results.Select(x => new Finding($"Potential index ({x.IndexName}) for removal for {x.ObjectName}.", x, x.drop_statement));
         }
     }
 }

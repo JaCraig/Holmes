@@ -23,16 +23,18 @@ namespace Holmes.Registration
     /// <summary>
     /// Registration extension methods
     /// </summary>
-    public static class Registration
+    public static class RegistrationExtensions
     {
         /// <summary>
         /// Registers the library with the bootstrapper.
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterHolmes(this IBootstrapper bootstrapper)
+        public static IBootstrapper? RegisterHolmes(this IBootstrapper? bootstrapper)
         {
-            return bootstrapper.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
+            if (bootstrapper == null)
+                return bootstrapper;
+            return bootstrapper.AddAssembly(typeof(RegistrationExtensions).GetTypeInfo().Assembly)
                                .RegisterSQLHelper();
         }
     }

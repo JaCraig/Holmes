@@ -54,7 +54,7 @@ namespace Holmes.BaseClasses
         /// <returns>This.</returns>
         public IAnalyzer AddQuery(SQLHelper batch)
         {
-            batch.AddQuery(QueryString, CommandType.Text);
+            batch?.AddQuery(QueryString, CommandType.Text);
             return this;
         }
 

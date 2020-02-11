@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Holmes.BaseClasses;
 using Holmes.Interfaces;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Holmes.Providers.SQLServer
 {
@@ -76,12 +76,7 @@ ORDER BY Avg_Estimated_Impact DESC";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.ForEach(x =>
-            {
-                return new Finding(string.Format("Suggested index creation for {0}.", x.TableName),
-                   x,
-                   x.Create_Statement);
-            });
+            return results.Select(x => new Finding($"Suggested index creation for {x.TableName}.", x, x.Create_Statement));
         }
     }
 }

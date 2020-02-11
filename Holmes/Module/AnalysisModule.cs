@@ -40,8 +40,8 @@ namespace Holmes.Module
         {
             if (bootstrapper == null)
                 return;
-            bootstrapper.RegisterAll<IAnalyzer>();
-            bootstrapper.Register<ProviderManager>(ServiceLifetime.Singleton);
+            bootstrapper.RegisterAll<IAnalyzer>()
+                .Register<ProviderManager>(ServiceLifetime.Singleton);
         }
     }
 }

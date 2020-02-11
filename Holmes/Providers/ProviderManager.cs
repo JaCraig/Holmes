@@ -18,6 +18,7 @@ using BigBook;
 using Holmes.Interfaces;
 using SQLHelperDB;
 using SQLHelperDB.HelperClasses.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Holmes.Providers
         public ProviderManager(IEnumerable<IAnalyzer> analyzers)
         {
             Analyzers = new ListMapping<DbProviderFactory, IAnalyzer>();
-            foreach (var Analyzer in analyzers)
+            foreach (var Analyzer in analyzers ?? Array.Empty<IAnalyzer>())
             {
                 Analyzers.Add(Analyzer.SupportedFactory, Analyzer);
             }
@@ -57,15 +58,22 @@ namespace Holmes.Providers
         private ListMapping<DbProviderFactory, IAnalyzer> Analyzers { get; }
 
         /// <summary>
+        /// Gets the helper.
+        /// </summary>
+        /// <value>The helper.</value>
+        private SQLHelper? Batch { get; set; }
+
+        /// <summary>
         /// Analyzes the specified connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>The results</returns>
         public IEnumerable<Finding> Analyze(IConnection connection)
         {
-            if (!Analyzers.ContainsKey(connection.Factory))
-                return new List<Finding>();
-            var Batch = new SQLHelper(connection);
+            if (connection == null || !Analyzers.ContainsKey(connection.Factory))
+                return Array.Empty<Finding>();
+            Batch ??= new SQLHelper(connection);
+            Batch.CreateBatch(connection);
             var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
             for (int x = 0; x < AnalyzersUsed.Length; ++x)
             {
