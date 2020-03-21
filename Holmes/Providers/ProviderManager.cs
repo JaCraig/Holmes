@@ -70,7 +70,7 @@ namespace Holmes.Providers
         /// <returns>The results</returns>
         public IEnumerable<Finding> Analyze(IConnection connection)
         {
-            if (connection == null || !Analyzers.ContainsKey(connection.Factory))
+            if (connection is null || !Analyzers.ContainsKey(connection.Factory))
                 return Array.Empty<Finding>();
             Batch ??= new SQLHelper(connection);
             Batch.CreateBatch(connection);

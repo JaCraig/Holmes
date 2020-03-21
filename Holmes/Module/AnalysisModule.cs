@@ -38,10 +38,8 @@ namespace Holmes.Module
         /// <param name="bootstrapper">The bootstrapper.</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
-                return;
-            bootstrapper.RegisterAll<IAnalyzer>()
-                .Register<ProviderManager>(ServiceLifetime.Singleton);
+            bootstrapper?.RegisterAll<IAnalyzer>()
+                         .Register<ProviderManager>(ServiceLifetime.Singleton);
         }
     }
 }

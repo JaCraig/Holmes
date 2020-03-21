@@ -32,10 +32,8 @@ namespace Holmes.Registration
         /// <returns>The bootstrapper</returns>
         public static IBootstrapper? RegisterHolmes(this IBootstrapper? bootstrapper)
         {
-            if (bootstrapper == null)
-                return bootstrapper;
-            return bootstrapper.AddAssembly(typeof(RegistrationExtensions).GetTypeInfo().Assembly)
-                               .RegisterSQLHelper();
+            return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).GetTypeInfo().Assembly)
+                                .RegisterSQLHelper();
         }
     }
 }
