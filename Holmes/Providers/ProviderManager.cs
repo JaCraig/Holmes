@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Holmes.Providers
 {
@@ -68,7 +69,7 @@ namespace Holmes.Providers
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>The results</returns>
-        public IEnumerable<Finding> Analyze(IConnection connection)
+        public async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
         {
             if (connection is null || !Analyzers.ContainsKey(connection.Factory))
                 return Array.Empty<Finding>();
@@ -79,7 +80,7 @@ namespace Holmes.Providers
             {
                 AnalyzersUsed[x].AddQuery(Batch);
             }
-            var Result = Batch.Execute();
+            var Result = await Batch.ExecuteAsync().ConfigureAwait(false);
             var ReturnValue = new List<Finding>();
             for (int x = 0; x < AnalyzersUsed.Length; ++x)
             {

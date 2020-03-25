@@ -1,6 +1,7 @@
 ﻿using Holmes.Tests.BaseClasses;
 using SQLHelperDB.HelperClasses;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Holmes.Tests
@@ -8,9 +9,9 @@ namespace Holmes.Tests
     public class SherlockTests : TestingFixture
     {
         [Fact]
-        public void Analyze()
+        public async Task Analyze()
         {
-            var Results = Sherlock.Analyze(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Results = await Sherlock.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
             Assert.NotEmpty(Results);
         }
     }

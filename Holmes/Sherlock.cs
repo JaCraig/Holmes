@@ -18,6 +18,7 @@ using Holmes.Providers;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Holmes
 {
@@ -31,9 +32,11 @@ namespace Holmes
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>The results</returns>
-        public static IEnumerable<Finding> Analyze(IConnection connection)
+        public static async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
         {
-            return Canister.Builder.Bootstrapper?.Resolve<ProviderManager>().Analyze(connection) ?? Array.Empty<Finding>();
+            if (Canister.Builder.Bootstrapper is null)
+                return Array.Empty<Finding>();
+            return (await Canister.Builder.Bootstrapper.Resolve<ProviderManager>().AnalyzeAsync(connection).ConfigureAwait(false)) ?? Array.Empty<Finding>();
         }
     }
 }

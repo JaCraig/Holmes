@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Holmes.Tests.BaseClasses
@@ -21,7 +22,7 @@ namespace Holmes.Tests.BaseClasses
         {
             SetupConfiguration();
             SetupIoC();
-            SetupDatabases();
+            Task.Run(async () => await SetupDatabasesAsync().ConfigureAwait(false)).GetAwaiter().GetResult();
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -61,7 +62,7 @@ namespace Holmes.Tests.BaseClasses
                              .Build();
         }
 
-        private void SetupDatabases()
+        private async Task SetupDatabasesAsync()
         {
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {
@@ -76,13 +77,12 @@ namespace Holmes.Tests.BaseClasses
                 catch { }
                 finally { TempCommand.Close(); }
             }
-            var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string Query in Queries)
+            foreach (string Query in new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-                new SQLHelper(Configuration, SqlClientFactory.Instance)
+                await new SQLHelper(Configuration, SqlClientFactory.Instance)
                     .CreateBatch()
                     .AddQuery(CommandType.Text, Query)
-                    .ExecuteScalar<int>();
+                    .ExecuteScalarAsync<int>().ConfigureAwait(false);
             }
         }
 

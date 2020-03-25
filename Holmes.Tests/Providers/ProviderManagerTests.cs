@@ -4,6 +4,7 @@ using Holmes.Providers.SQLServer;
 using Holmes.Tests.BaseClasses;
 using SQLHelperDB.HelperClasses;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Holmes.Tests.Providers
@@ -11,18 +12,18 @@ namespace Holmes.Tests.Providers
     public class ProviderManagerTests : TestingFixture
     {
         [Fact]
-        public void Analyze()
+        public async Task Analyze()
         {
             var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() });
-            var Results = TestObject.Analyze(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
             Assert.NotEmpty(Results);
         }
 
         [Fact]
-        public void CanisterRegistrationTest()
+        public async Task CanisterRegistrationTest()
         {
             var TestObject = Canister.Builder.Bootstrapper.Resolve<ProviderManager>();
-            var Results = TestObject.Analyze(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
             Assert.NotEmpty(Results);
         }
 
