@@ -39,7 +39,8 @@ namespace Holmes.Module
         public void Load(IBootstrapper bootstrapper)
         {
             bootstrapper?.RegisterAll<IAnalyzer>()
-                         .Register<ProviderManager>(ServiceLifetime.Singleton);
+                         .Register<ProviderManager>(ServiceLifetime.Singleton)
+                         .Register<Sherlock>(ServiceLifetime.Singleton);
         }
     }
 }

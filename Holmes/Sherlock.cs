@@ -25,18 +25,31 @@ namespace Holmes
     /// <summary>
     /// Main class
     /// </summary>
-    public static class Sherlock
+    public class Sherlock
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Sherlock"/> class.
+        /// </summary>
+        /// <param name="providerManager">The provider manager.</param>
+        public Sherlock(ProviderManager providerManager)
+        {
+            ProviderManager = providerManager;
+        }
+
+        /// <summary>
+        /// Gets the provider manager.
+        /// </summary>
+        /// <value>The provider manager.</value>
+        private ProviderManager ProviderManager { get; }
+
         /// <summary>
         /// Analyzes the specified connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>The results</returns>
-        public static async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
+        public async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
         {
-            if (Canister.Builder.Bootstrapper is null)
-                return Array.Empty<Finding>();
-            return (await Canister.Builder.Bootstrapper.Resolve<ProviderManager>().AnalyzeAsync(connection).ConfigureAwait(false)) ?? Array.Empty<Finding>();
+            return (await ProviderManager.AnalyzeAsync(connection).ConfigureAwait(false)) ?? Array.Empty<Finding>();
         }
     }
 }

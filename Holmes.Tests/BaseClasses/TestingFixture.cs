@@ -1,8 +1,10 @@
-﻿using FileCurator;
+﻿using BigBook.DataMapper;
+using FileCurator;
 using FileCurator.Registration;
 using Holmes.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.ExtensionMethods;
 using System;
@@ -10,6 +12,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -25,14 +28,16 @@ namespace Holmes.Tests.BaseClasses
             Task.Run(async () => await SetupDatabasesAsync().ConfigureAwait(false)).GetAwaiter().GetResult();
         }
 
+        protected Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
         public IConfigurationRoot Configuration { get; set; }
 
         protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
-
         protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
-
         protected string DatabaseName => "TestDatabase";
+        protected Manager Manager => Canister.Builder.Bootstrapper.Resolve<Manager>();
         protected string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
+        protected Sherlock Sherlock => Canister.Builder.Bootstrapper.Resolve<Sherlock>();
 
         public void Dispose()
         {
