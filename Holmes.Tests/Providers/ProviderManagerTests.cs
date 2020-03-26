@@ -14,7 +14,7 @@ namespace Holmes.Tests.Providers
         [Fact]
         public async Task Analyze()
         {
-            var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() }, ObjectPool, Aspectus, Manager);
+            var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() }, Helper);
             var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
             Assert.NotEmpty(Results);
         }
@@ -30,7 +30,7 @@ namespace Holmes.Tests.Providers
         [Fact]
         public void Creation()
         {
-            var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() }, ObjectPool, Aspectus, Manager);
+            var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() }, Helper);
             Assert.NotNull(TestObject);
         }
     }

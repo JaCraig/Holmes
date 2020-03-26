@@ -15,16 +15,13 @@ limitations under the License.
 */
 
 using BigBook;
-using BigBook.DataMapper;
 using Holmes.Interfaces;
-using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Holmes.Providers
@@ -37,19 +34,9 @@ namespace Holmes.Providers
         /// <summary>
         /// Initializes a new instance of the <see cref="ProviderManager"/> class.
         /// </summary>
-        public ProviderManager()
-            : this(new List<IAnalyzer>(), null, null, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProviderManager"/> class.
-        /// </summary>
         /// <param name="analyzers">The analyzers.</param>
-        /// <param name="stringBuilderPool">The string builder pool.</param>
-        /// <param name="aopManager">The aop manager.</param>
-        /// <param name="dataMapper">The data mapper.</param>
-        public ProviderManager(IEnumerable<IAnalyzer> analyzers, ObjectPool<StringBuilder>? stringBuilderPool, Aspectus.Aspectus? aopManager, Manager? dataMapper)
+        /// <param name="helper">The helper.</param>
+        public ProviderManager(IEnumerable<IAnalyzer> analyzers, SQLHelper helper)
         {
             Analyzers = new ListMapping<DbProviderFactory, IAnalyzer>();
             foreach (var Analyzer in analyzers ?? Array.Empty<IAnalyzer>())
@@ -57,28 +44,8 @@ namespace Holmes.Providers
                 Analyzers.Add(Analyzer.SupportedFactory, Analyzer);
             }
 
-            DataMapper = dataMapper;
-            AopManager = aopManager;
-            StringBuilderPool = stringBuilderPool;
+            Batch = helper;
         }
-
-        /// <summary>
-        /// Gets the aop manager.
-        /// </summary>
-        /// <value>The aop manager.</value>
-        public Aspectus.Aspectus? AopManager { get; }
-
-        /// <summary>
-        /// Gets the data mapper.
-        /// </summary>
-        /// <value>The data mapper.</value>
-        public Manager? DataMapper { get; }
-
-        /// <summary>
-        /// Gets the string builder pool.
-        /// </summary>
-        /// <value>The string builder pool.</value>
-        public ObjectPool<StringBuilder>? StringBuilderPool { get; }
 
         /// <summary>
         /// Gets the analyers.
@@ -90,7 +57,7 @@ namespace Holmes.Providers
         /// Gets the helper.
         /// </summary>
         /// <value>The helper.</value>
-        private SQLHelper? Batch { get; set; }
+        private SQLHelper Batch { get; }
 
         /// <summary>
         /// Analyzes the specified connection.
@@ -101,7 +68,6 @@ namespace Holmes.Providers
         {
             if (connection is null || !Analyzers.ContainsKey(connection.Factory))
                 return Array.Empty<Finding>();
-            Batch ??= new SQLHelper(connection, StringBuilderPool, AopManager, DataMapper);
             Batch.CreateBatch(connection);
             var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
             for (int x = 0; x < AnalyzersUsed.Length; ++x)

@@ -1,4 +1,4 @@
-﻿using BigBook.DataMapper;
+﻿using BigBook;
 using FileCurator;
 using FileCurator.Registration;
 using Holmes.Registration;
@@ -28,13 +28,13 @@ namespace Holmes.Tests.BaseClasses
             Task.Run(async () => await SetupDatabasesAsync().ConfigureAwait(false)).GetAwaiter().GetResult();
         }
 
-        protected Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
         protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
         protected string DatabaseName => "TestDatabase";
-        protected Manager Manager => Canister.Builder.Bootstrapper.Resolve<Manager>();
+        protected DynamoFactory Factory => Canister.Builder.Bootstrapper.Resolve<DynamoFactory>();
+        protected SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
         protected string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
         protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
         protected Sherlock Sherlock => Canister.Builder.Bootstrapper.Resolve<Sherlock>();
@@ -84,7 +84,7 @@ namespace Holmes.Tests.BaseClasses
             }
             foreach (string Query in new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-                await new SQLHelper(Configuration, SqlClientFactory.Instance)
+                await new SQLHelper(ObjectPool, Factory, Configuration)
                     .CreateBatch()
                     .AddQuery(CommandType.Text, Query)
                     .ExecuteScalarAsync<int>().ConfigureAwait(false);
