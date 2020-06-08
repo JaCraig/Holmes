@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holmes", "Holmes\Holmes.csproj", "{1C33E423-8B0E-43C4-ADDC-32ADB7CB6C47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Holmes", "Holmes\Holmes.csproj", "{1C33E423-8B0E-43C4-ADDC-32ADB7CB6C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holmes.Tests", "Holmes.Tests\Holmes.Tests.csproj", "{DF0500BF-573D-441F-B736-FF918EB23385}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Holmes.Tests", "Holmes.Tests\Holmes.Tests.csproj", "{DF0500BF-573D-441F-B736-FF918EB23385}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9F5A47D9-BFE4-4DEA-89CB-14C9541316A2}"
 EndProject
@@ -32,5 +32,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1C33E423-8B0E-43C4-ADDC-32ADB7CB6C47} = {9F5A47D9-BFE4-4DEA-89CB-14C9541316A2}
 		{DF0500BF-573D-441F-B736-FF918EB23385} = {871F0F6B-086E-432E-AF61-0F3A2F108288}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD5D7E10-C95B-41BB-9578-4C89C5F3577A}
 	EndGlobalSection
 EndGlobal
