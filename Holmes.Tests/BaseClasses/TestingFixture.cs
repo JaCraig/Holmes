@@ -4,6 +4,7 @@ using FileCurator.Registration;
 using Holmes.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.ExtensionMethods;
@@ -35,6 +36,7 @@ namespace Holmes.Tests.BaseClasses
         protected string DatabaseName => "TestDatabase";
         protected DynamoFactory Factory => Canister.Builder.Bootstrapper.Resolve<DynamoFactory>();
         protected SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
+        protected ILogger<SQLHelper> Logger => Canister.Builder.Bootstrapper.Resolve<ILogger<SQLHelper>>();
         protected string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
         protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
         protected Sherlock Sherlock => Canister.Builder.Bootstrapper.Resolve<Sherlock>();
@@ -84,7 +86,7 @@ namespace Holmes.Tests.BaseClasses
             }
             foreach (string Query in new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-                await new SQLHelper(ObjectPool, Factory, Configuration)
+                await new SQLHelper(ObjectPool, Factory, Configuration, Logger)
                     .CreateBatch()
                     .AddQuery(CommandType.Text, Query)
                     .ExecuteScalarAsync<int>().ConfigureAwait(false);
@@ -95,7 +97,9 @@ namespace Holmes.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper == null)
             {
-                var Container = Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
+                var Services = new ServiceCollection();
+                Services.AddLogging();
+                var Container = Canister.Builder.CreateContainer(Services)
                                                 .AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
                                                 .RegisterHolmes()
                                                 .RegisterFileCurator()
