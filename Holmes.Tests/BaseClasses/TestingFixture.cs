@@ -1,7 +1,5 @@
 ﻿using BigBook;
 using FileCurator;
-using FileCurator.Registration;
-using Holmes.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -98,13 +96,11 @@ namespace Holmes.Tests.BaseClasses
             if (Canister.Builder.Bootstrapper == null)
             {
                 var Services = new ServiceCollection();
-                Services.AddLogging();
-                var Container = Canister.Builder.CreateContainer(Services)
-                                                .AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
+                Services.AddLogging()
+                    .AddSingleton(Configuration)
+                    .AddCanisterModules(x => x.AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
                                                 .RegisterHolmes()
-                                                .RegisterFileCurator()
-                                                .Build();
-                Container.Register(Configuration, ServiceLifetime.Singleton);
+                                                .RegisterFileCurator());
             }
         }
     }

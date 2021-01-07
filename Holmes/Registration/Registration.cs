@@ -15,10 +15,8 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using SQLHelperDB.Registration;
-using System.Reflection;
 
-namespace Holmes.Registration
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Registration extension methods
@@ -30,9 +28,9 @@ namespace Holmes.Registration
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper? RegisterHolmes(this IBootstrapper? bootstrapper)
+        public static ICanisterConfiguration? RegisterHolmes(this ICanisterConfiguration? bootstrapper)
         {
-            return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).GetTypeInfo().Assembly)
+            return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
                                 .RegisterSQLHelper();
         }
     }
