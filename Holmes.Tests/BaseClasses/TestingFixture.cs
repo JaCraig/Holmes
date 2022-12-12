@@ -25,16 +25,26 @@ namespace Holmes.Tests.BaseClasses
             Task.Run(async () => await SetupDatabasesAsync().ConfigureAwait(false)).GetAwaiter().GetResult();
         }
 
-        public IConfiguration Configuration { get; set; }
+        public static IConfiguration Configuration { get; set; }
 
-        protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
-        protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
-        protected string DatabaseName => "TestDatabase";
-        protected SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
-        protected ILogger<SQLHelper> Logger => Canister.Builder.Bootstrapper.Resolve<ILogger<SQLHelper>>();
-        protected string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
-        protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
-        protected Sherlock Sherlock => Canister.Builder.Bootstrapper.Resolve<Sherlock>();
+        protected static string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
+        protected static string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
+        protected static string DatabaseName => "TestDatabase";
+        protected static SQLHelper Helper => GetServiceProvider().GetService<SQLHelper>();
+        protected static ILogger<SQLHelper> Logger => GetServiceProvider().GetService<ILogger<SQLHelper>>();
+        protected static string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
+        protected static Sherlock Sherlock => GetServiceProvider().GetService<Sherlock>();
+
+        /// <summary>
+        /// The service provider lock
+        /// </summary>
+        private static readonly object ServiceProviderLock = new object();
+
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        private static IServiceProvider ServiceProvider;
 
         public void Dispose()
         {
@@ -49,6 +59,23 @@ namespace Holmes.Tests.BaseClasses
             }
             catch { }
             finally { TempCommand.Close(); }
+        }
+
+        /// <summary>
+        /// Gets the service provider.
+        /// </summary>
+        /// <returns></returns>
+        protected static IServiceProvider GetServiceProvider()
+        {
+            if (ServiceProvider is not null)
+                return ServiceProvider;
+            lock (ServiceProviderLock)
+            {
+                if (ServiceProvider is not null)
+                    return ServiceProvider;
+                ServiceProvider = new ServiceCollection().AddLogging().AddSingleton(Configuration).AddCanisterModules()?.BuildServiceProvider();
+            }
+            return ServiceProvider;
         }
 
         private void SetupConfiguration()
@@ -90,13 +117,6 @@ namespace Holmes.Tests.BaseClasses
 
         private void SetupIoC()
         {
-            if (Canister.Builder.Bootstrapper == null)
-            {
-                var Services = new ServiceCollection();
-                Services.AddLogging()
-                    .AddSingleton(Configuration)
-                    .AddCanisterModules();
-            }
         }
     }
 }

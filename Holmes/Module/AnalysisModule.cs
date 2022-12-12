@@ -36,11 +36,11 @@ namespace Holmes.Module
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IServiceCollection bootstrapper)
         {
-            bootstrapper?.RegisterAll<IAnalyzer>()
-                         .Register<ProviderManager>(ServiceLifetime.Singleton)
-                         .Register<Sherlock>(ServiceLifetime.Singleton);
+            bootstrapper?.AddAllTransient<IAnalyzer>()
+                         ?.AddSingleton<ProviderManager>()
+                         ?.AddSingleton<Sherlock>();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Holmes.Providers;
 using Holmes.Providers.SQLServer;
 using Holmes.Tests.BaseClasses;
+using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.HelperClasses;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Holmes.Tests.Providers
         [Fact]
         public async Task CanisterRegistrationTest()
         {
-            var TestObject = Canister.Builder.Bootstrapper.Resolve<ProviderManager>();
+            var TestObject = GetServiceProvider().GetService<ProviderManager>();
             var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
             Assert.NotEmpty(Results);
         }
