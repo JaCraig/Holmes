@@ -16,9 +16,9 @@ limitations under the License.
 
 using Holmes.BaseClasses;
 using Holmes.Interfaces;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace Holmes.Providers.SQLServer

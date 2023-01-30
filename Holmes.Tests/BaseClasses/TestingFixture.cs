@@ -1,4 +1,5 @@
 ﻿using FileCurator;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -8,7 +9,6 @@ using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -27,12 +27,12 @@ namespace Holmes.Tests.BaseClasses
 
         public static IConfiguration Configuration { get; set; }
 
-        protected static string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
-        protected static string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
+        protected static string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+        protected static string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
         protected static string DatabaseName => "TestDatabase";
         protected static SQLHelper Helper => GetServiceProvider().GetService<SQLHelper>();
         protected static ILogger<SQLHelper> Logger => GetServiceProvider().GetService<ILogger<SQLHelper>>();
-        protected static string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected static string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
         protected static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
         protected static Sherlock Sherlock => GetServiceProvider().GetService<Sherlock>();
 

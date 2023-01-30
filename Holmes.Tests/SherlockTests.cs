@@ -1,6 +1,6 @@
 ﻿using Holmes.Tests.BaseClasses;
+using Microsoft.Data.SqlClient;
 using SQLHelperDB.HelperClasses;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Xunit;
 

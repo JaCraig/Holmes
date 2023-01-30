@@ -2,9 +2,9 @@
 using Holmes.Providers;
 using Holmes.Providers.SQLServer;
 using Holmes.Tests.BaseClasses;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.HelperClasses;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Xunit;
 
