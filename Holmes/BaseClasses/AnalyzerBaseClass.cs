@@ -39,7 +39,7 @@ namespace Holmes.BaseClasses
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public abstract DbProviderFactory SupportedFactory { get; }
+        public abstract DbProviderFactory[] SupportedFactories { get; }
 
         /// <summary>
         /// Gets the query string.

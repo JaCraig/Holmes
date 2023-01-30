@@ -41,7 +41,10 @@ namespace Holmes.Providers
             Analyzers = new ListMapping<DbProviderFactory, IAnalyzer>();
             foreach (var Analyzer in analyzers ?? Array.Empty<IAnalyzer>())
             {
-                Analyzers.Add(Analyzer.SupportedFactory, Analyzer);
+                foreach (var SupportedFactory in Analyzer.SupportedFactories)
+                {
+                    Analyzers.Add(SupportedFactory, Analyzer);
+                }
             }
 
             Batch = helper;

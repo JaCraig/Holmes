@@ -16,9 +16,9 @@ limitations under the License.
 
 using Holmes.BaseClasses;
 using Holmes.Interfaces;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 
 namespace Holmes.Providers.SQLServer
@@ -33,7 +33,7 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory SupportedFactory { get; } = SqlClientFactory.Instance;
+        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the query string.

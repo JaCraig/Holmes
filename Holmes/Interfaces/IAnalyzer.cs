@@ -29,7 +29,7 @@ namespace Holmes.Interfaces
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        DbProviderFactory SupportedFactory { get; }
+        DbProviderFactory[] SupportedFactories { get; }
 
         /// <summary>
         /// Adds the query the analyzer needs to the batch.
