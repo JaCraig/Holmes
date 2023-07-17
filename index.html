@@ -97,13 +97,11 @@
 <p><a href="https://ci.appveyor.com/project/JaCraig/holmes"><img src="https://ci.appveyor.com/api/projects/status/w95i5th94ayc3f6q?svg=true" alt="Build status"></a></p>
 <p>Holmes is a database analysis library. It scans a database and returns suggestions for improvement. Supports .Net Core as well as full .Net</p>
 <h2 id="setting-up-the-library">Setting Up the Library</h2>
-<p>Holmes relies on <a href="https://github.com/JaCraig/Canister">Canister</a> in order to hook itself up. In order for this to work, you must do the following at startup:</p>
-<pre><code>Canister.Builder.CreateContainer(new List&lt;ServiceDescriptor&gt;())
-                .RegisterHolmes()
-                .Build();
+<p>In order to use Holmes, you need to start by wiring it up on your ServiceCollection. However this takes just one extension method call:</p>
+<pre><code>serviceCollection.AddCanisterModules();
 				
 </code></pre>
-<p>The RegisterHolmes function is an extension method that registers it with the IoC container. When this is done, Holmes is ready to use.</p>
+<p>When this is done, Holmes is ready to use.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>The main class of interest is the Sherlock class:</p>
 <pre><code>var Results = Sherlock.Analyze(new Connection(...));
@@ -129,14 +127,7 @@
 </ul>
 </li>
 </ul>
-<p>However you can easily add your own analyzer by simply creating a class that inherits from IAnalyzer and registering your DLL with Canister:</p>
-<pre><code>Canister.Builder.CreateContainer(new List&lt;ServiceDescriptor&gt;())
-                .RegisterHolmes()
-                .AddAssembly(typeof(MyAnalyzer).GetTypeInfo().Assembly)
-                .Build();
-				
-</code></pre>
-<p>The system will then pick it up automatically and run it as well. For simple analyzers there is also an AnalyzerBaseClass that will simplify the process of setting up your analyzer. The IAnalyzer interface itself is rather simple though:</p>
+<p>However you can easily add your own analyzer by simply creating a class that inherits from IAnalyzer.  The system will then pick it up automatically and run it as well. For simple analyzers there is also an AnalyzerBaseClass that will simplify the process of setting up your analyzer. The IAnalyzer interface itself is rather simple though:</p>
 <pre><code>public interface IAnalyzer
 {
     /// &lt;summary&gt;
@@ -168,7 +159,7 @@
 <h2 id="build-process">Build Process</h2>
 <p>In order to build the library you will require the following:</p>
 <ol>
-<li>Visual Studio 2017</li>
+<li>Visual Studio 2022</li>
 </ol>
 <p>Other than that, just clone the project and you should be able to load the solution and build without too much effort.</p>
 </article>
