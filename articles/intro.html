@@ -98,14 +98,54 @@
                     <article class="content wrap" id="_content" data-uid="">
 <h1 id="code">Code</h1>
 
-<div class="WARNING">
-Warning
-<p>It looks like the sample you are looking for does not exist.</p>
-</div><h1 id="output">Output</h1>
-<pre><code>I was created
-I was created with a string: Hello World
-</code></pre>
-</article>
+<pre><code class="lang-csharp">using BigBook;
+using Holmes;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SQLHelperDB.HelperClasses;
+using System.Data.SqlClient;
+
+namespace Example
+{
+    /// &lt;summary&gt;
+    /// This is an example program to show how to use Holmes
+    /// &lt;/summary&gt;
+    internal class Program
+    {
+        /// &lt;summary&gt;
+        /// Defines the entry point of the application.
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;args&quot;&gt;The arguments.&lt;/param&gt;
+        private static async Task Main(string[] args)
+        {
+            // Setup the system by adding the services and configuration
+            var Services = new ServiceCollection().AddCanisterModules()?.BuildServiceProvider();
+            // Get the configuration
+            var Configuration = Services?.GetService&lt;IConfiguration&gt;();
+            // Get the Sherlock service
+            var Sherlock = Services?.GetService&lt;Sherlock&gt;();
+            if (Sherlock is null || Configuration is null)
+            {
+                return;
+            }
+
+            // Analyze the database specified in the configuration (Default is the connection string name) and output the results
+            var Results = await Sherlock.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, &quot;Default&quot;)).ConfigureAwait(false);
+
+            // Output the results to the console
+            foreach (var Result in Results)
+            {
+                // The result is the result of the analysis
+                Console.WriteLine(&quot;Result: {0}&quot;, Result.Text);
+                // The fix is the suggested fix for the analysis (if any)
+                Console.WriteLine(&quot;Fix: {0}&quot;, Result.Fix);
+                // The metrics are the metrics for the analysis
+                Console.WriteLine(Result.Metrics.ToString(x =&gt; x.Key + &quot;: &quot; + x.Value, &quot;\n&quot;));
+            }
+        }
+    }
+}
+</code></pre></article>
                 </div>
 
                 <div class="copyright-footer">

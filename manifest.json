@@ -22,9 +22,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "codesnippet-not-found"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/intro.md",
       "output": {
