@@ -6,13 +6,11 @@ Holmes is a database analysis library. It scans a database and returns suggestio
 
 ## Setting Up the Library
 
-Holmes relies on [Canister](https://github.com/JaCraig/Canister) in order to hook itself up. In order for this to work, you must do the following at startup:
+In order to use Holmes, you need to start by wiring it up on your ServiceCollection. However this takes just one extension method call:
 
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterHolmes()
-                    .Build();
+    serviceCollection.AddCanisterModules();
 					
-The RegisterHolmes function is an extension method that registers it with the IoC container. When this is done, Holmes is ready to use.
+When this is done, Holmes is ready to use.
 
 ## Basic Usage
 
@@ -41,14 +39,7 @@ The system a couple of built in analyzers:
   * Overlapping indexes
   * Unused indexes
   
-However you can easily add your own analyzer by simply creating a class that inherits from IAnalyzer and registering your DLL with Canister:
-
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterHolmes()
-                    .AddAssembly(typeof(MyAnalyzer).GetTypeInfo().Assembly)
-                    .Build();
-					
-The system will then pick it up automatically and run it as well. For simple analyzers there is also an AnalyzerBaseClass that will simplify the process of setting up your analyzer. The IAnalyzer interface itself is rather simple though:
+However you can easily add your own analyzer by simply creating a class that inherits from IAnalyzer.  The system will then pick it up automatically and run it as well. For simple analyzers there is also an AnalyzerBaseClass that will simplify the process of setting up your analyzer. The IAnalyzer interface itself is rather simple though:
 
     public interface IAnalyzer
     {
@@ -85,7 +76,7 @@ The library is available via Nuget with the package name "Holmes". To install it
 
 In order to build the library you will require the following:
 
-1. Visual Studio 2017
+1. Visual Studio 2022
 
 Other than that, just clone the project and you should be able to load the solution and build without too much effort.
 
