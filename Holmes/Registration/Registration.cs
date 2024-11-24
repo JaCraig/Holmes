@@ -15,6 +15,9 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
+using Holmes;
+using Holmes.Interfaces;
+using Holmes.Providers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -32,6 +35,20 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
                                 .RegisterSQLHelper();
+        }
+
+        /// <summary>
+        /// Registers the Holmes services with the specified service collection.
+        /// </summary>
+        /// <param name="services">The service collection to add the services to.</param>
+        /// <returns>The service collection with the Holmes services registered.</returns>
+        public static IServiceCollection? RegisterHolmes(this IServiceCollection services)
+        {
+            if (services.Exists<ProviderManager>())
+                return services;
+            return services?.AddAllTransient<IAnalyzer>()
+                         ?.AddSingleton<ProviderManager>()
+                         ?.AddSingleton<Sherlock>();
         }
     }
 }

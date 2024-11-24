@@ -15,8 +15,6 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using Holmes.Interfaces;
-using Holmes.Providers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Holmes.Module
@@ -36,11 +34,6 @@ namespace Holmes.Module
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IServiceCollection bootstrapper)
-        {
-            bootstrapper?.AddAllTransient<IAnalyzer>()
-                         ?.AddSingleton<ProviderManager>()
-                         ?.AddSingleton<Sherlock>();
-        }
+        public void Load(IServiceCollection bootstrapper) => bootstrapper?.RegisterHolmes();
     }
 }
