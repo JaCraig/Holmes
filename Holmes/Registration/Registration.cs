@@ -48,7 +48,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 return services;
             return services?.AddAllTransient<IAnalyzer>()
                          ?.AddSingleton<ProviderManager>()
-                         ?.AddSingleton<Sherlock>();
+                         ?.AddSingleton<Sherlock>()
+                         ?.RegisterSQLHelper();
         }
     }
 }
