@@ -1,9 +1,9 @@
 ﻿using BigBook;
 using Holmes;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.HelperClasses;
-using System.Data.SqlClient;
 
 namespace Example
 {
