@@ -1,11 +1,10 @@
 ﻿using FileCurator;
-using Microsoft.Data.SqlClient;
+using Holmes.Tests.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
-using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,12 +26,12 @@ namespace Holmes.Tests.BaseClasses
 
         public static IConfiguration Configuration { get; set; }
 
-        protected static string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
-        protected static string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+        protected static string ConnectionString => TestConnectionStrings.Default;
+        protected static string ConnectionStringNew => TestConnectionStrings.Default2;
         protected static string DatabaseName => "TestDatabase";
         protected static SQLHelper Helper => GetServiceProvider().GetService<SQLHelper>();
         protected static ILogger<SQLHelper> Logger => GetServiceProvider().GetService<ILogger<SQLHelper>>();
-        protected static string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+        protected static string MasterString => TestConnectionStrings.Master;
         protected static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
         protected static Sherlock Sherlock => GetServiceProvider().GetService<Sherlock>();
 
@@ -48,17 +47,7 @@ namespace Holmes.Tests.BaseClasses
 
         public void Dispose()
         {
-            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = MasterString;
-            using var TempCommand = TempConnection.CreateCommand();
-            try
-            {
-                TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
-                TempCommand.Open();
-                TempCommand.ExecuteNonQuery();
-            }
-            catch { }
-            finally { TempCommand.Close(); }
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -93,19 +82,7 @@ namespace Holmes.Tests.BaseClasses
 
         private async Task SetupDatabasesAsync()
         {
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
-            {
-                TempConnection.ConnectionString = MasterString;
-                using var TempCommand = TempConnection.CreateCommand();
-                try
-                {
-                    TempCommand.CommandText = "Create Database TestDatabase";
-                    TempCommand.Open();
-                    TempCommand.ExecuteNonQuery();
-                }
-                catch { }
-                finally { TempCommand.Close(); }
-            }
+            await TestDatabaseManager.ResetKnownDatabasesAsync().ConfigureAwait(false);
             foreach (string Query in new FileInfo("./Scripts/script.sql").Read().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
                 await new SQLHelper(ObjectPool, Configuration, Logger)

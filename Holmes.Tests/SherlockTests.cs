@@ -11,7 +11,7 @@ namespace Holmes.Tests
         [Fact]
         public async Task Analyze()
         {
-            var Results = await Sherlock.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
+            var Results = await Sherlock.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
             Assert.NotEmpty(Results);
         }
     }

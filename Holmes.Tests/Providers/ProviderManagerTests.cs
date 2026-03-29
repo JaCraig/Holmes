@@ -16,7 +16,7 @@ namespace Holmes.Tests.Providers
         public async Task CanisterRegistrationTest()
         {
             var TestObject = GetServiceProvider().GetService<ProviderManager>();
-            var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default")).ConfigureAwait(false);
+            var Results = await TestObject.AnalyzeAsync(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
             Assert.NotEmpty(Results);
         }
 
