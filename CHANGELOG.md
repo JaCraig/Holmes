@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.140"></a>
+## [5.0.140](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.140) (2026-03-30)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([b26d616](https://www.github.com/JaCraig/Holmes/commit/b26d61600ab7af971eae290e1a9e78a033407959))
+
+### Other
+
+* Merge pull request #383 from JaCraig/dependabot/github_actions/dependencies-97f38a5d32 ([b7487c6](https://www.github.com/JaCraig/Holmes/commit/b7487c6034dd46222dbc63d30e508450b9db3cb2))
+* Merge pull request #385 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-be9b4ec768 ([7e4bd7e](https://www.github.com/JaCraig/Holmes/commit/7e4bd7e2f87da53510368cccb9dfa06209d03f8e))
+* Merge pull request #386 from JaCraig/dependabot/nuget/Holmes/dependencies-1fed5f1c92 ([27b5d39](https://www.github.com/JaCraig/Holmes/commit/27b5d39dea69b0c7ef16904c7a2dad6dbddb74b0))
+* Merge pull request #387 from JaCraig/dependabot/nuget/Holmes/dependencies-1fed5f1c92 ([6e6d990](https://www.github.com/JaCraig/Holmes/commit/6e6d990f69d4fc75f3545d89bb2f70cb874b0d30))
+* Bump actions/cache from 4 to 5 in the dependencies group ([83d8ca1](https://www.github.com/JaCraig/Holmes/commit/83d8ca1f1122359f75d3c74101c33ea104b8e5a9))
+* Bump the dependencies group with 1 update ([12d2929](https://www.github.com/JaCraig/Holmes/commit/12d29299fefdcd12febfa2d56c801b2f3501b18d))
+* Bump the dependencies group with 2 updates ([6c6abf0](https://www.github.com/JaCraig/Holmes/commit/6c6abf0d6c31be261bbf082bd4d1a4475da76f88))
+* Merge branch 'master' of https://github.com/JaCraig/Holmes ([aabc8f3](https://www.github.com/JaCraig/Holmes/commit/aabc8f34c7d44f40db1811ff7273ea5b4aed7877))
+* Update build status badge in README.md ([055048c](https://www.github.com/JaCraig/Holmes/commit/055048c5bcb9f5755badce9cc88b46621087eca8))
+* **workflow:** set default SQL password in dotnet-test.yml ([fdf81f0](https://www.github.com/JaCraig/Holmes/commit/fdf81f004be7c1a6a6854ed0969ff2f6a72ec6bb))
+
 <a name="5.0.139"></a>
 ## [5.0.139](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.139) (2026-03-29)
 
