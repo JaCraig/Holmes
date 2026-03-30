@@ -1,6 +1,6 @@
 # Holmes
 
-[![Build status](https://ci.appveyor.com/api/projects/status/w95i5th94ayc3f6q?svg=true)](https://ci.appveyor.com/project/JaCraig/holmes)
+[![.NET Publish](https://github.com/JaCraig/Holmes/actions/workflows/dotnet-publish.yml/badge.svg)](https://github.com/JaCraig/Holmes/actions/workflows/dotnet-publish.yml)
 
 Holmes is a database analysis library. It scans a database and returns suggestions for improvement. Supports .Net Core as well as full .Net
 
