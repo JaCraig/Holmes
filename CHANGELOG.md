@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.143"></a>
+## [5.0.143](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.143) (2026-04-14)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([99a0911](https://www.github.com/JaCraig/Holmes/commit/99a0911cddf4221311ba1bdf85125bd21c1becd5))
+
+### Other
+
+* Merge pull request #390 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-5313d9029a ([3c2afe4](https://www.github.com/JaCraig/Holmes/commit/3c2afe4866ecf3c5a0465ba75665bbe61a01c1e4))
+* Merge pull request #391 from JaCraig/dependabot/github_actions/dependencies-1f20c0ea9b ([1b8f592](https://www.github.com/JaCraig/Holmes/commit/1b8f5926e8c54ce94c1ea848dbcc6649ba942d11))
+* Merge pull request #392 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-92e0d09f4d ([33f1a54](https://www.github.com/JaCraig/Holmes/commit/33f1a543ab8ec3ad26f6a763745cafc5c8268149))
+* Merge pull request #393 from JaCraig/dependabot/nuget/Holmes/dependencies-aeefbeedc6 ([dae2baa](https://www.github.com/JaCraig/Holmes/commit/dae2baa867136fe9f3902a4c7159cc5b88513c1c))
+* Bump ad-m/github-push-action in the dependencies group ([10f12a5](https://www.github.com/JaCraig/Holmes/commit/10f12a53f3c55693eb6af5af632031969dc84875))
+* Bump the dependencies group with 1 update ([9f1d3b3](https://www.github.com/JaCraig/Holmes/commit/9f1d3b37480edb8fc4ab737355c0135738a8dbc7))
+* Bump the dependencies group with 2 updates ([1cd47ff](https://www.github.com/JaCraig/Holmes/commit/1cd47ff5ac9b334b57cc997781998f50462d0f21))
+
 <a name="5.0.142"></a>
 ## [5.0.142](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.142) (2026-04-02)
 
