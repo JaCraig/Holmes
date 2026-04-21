@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.148"></a>
+## [5.0.148](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.148) (2026-04-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([0b758a1](https://www.github.com/JaCraig/Holmes/commit/0b758a1ad70070bb2dbc8d86cd515608310dccf2))
+
+### Other
+
+* Merge pull request #399 from JaCraig/dependabot/nuget/Holmes/dependencies-9379117558 ([a55ae31](https://www.github.com/JaCraig/Holmes/commit/a55ae31f1d1309b87a522aa15eeace81e4617a45))
+
 <a name="5.0.147"></a>
 ## [5.0.147](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.147) (2026-04-21)
 
