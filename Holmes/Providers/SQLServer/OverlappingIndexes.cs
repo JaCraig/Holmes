@@ -33,7 +33,7 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the query string.
@@ -69,7 +69,7 @@ MD1.Col9, MD1.Col10, MD1.Col11, MD1.Col12,
 MD1.Col13, MD1.Col14, MD1.Col15, MD1.Col16
 FROM MyDuplicate MD1
 INNER JOIN MyDuplicate MD2 ON MD1.tablename = MD2.tablename
-AND MD1.indexname <> MD2.indexname
+AND MD1.IndexName < MD2.IndexName
 AND MD1.Col1 = MD2.Col1
 AND (MD1.Col2 IS NULL OR MD2.Col2 IS NULL OR MD1.Col2 = MD2.Col2)
 AND (MD1.Col3 IS NULL OR MD2.Col3 IS NULL OR MD1.Col3 = MD2.Col3)
@@ -95,7 +95,7 @@ ORDER BY MD1.SchemaName,MD1.TableName,MD1.IndexName";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.Select(x => new Finding($"Index {x.IndexName} overlaps with index {x.OverLappingIndex}. Consider removing one of them if not needed.", x, ""));
+            return results.Select(x => new Finding($"Index {x.IndexName} overlaps with index {x.OverLappingIndex}. Consider removing one of them if not needed.", x, "", FindingSeverity.Warning, "Index"));
         }
     }
 }

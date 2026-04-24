@@ -33,7 +33,7 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the query string.
@@ -65,7 +65,7 @@ ORDER BY qs.total_worker_time DESC";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.Select(x => new Finding("These are the most expensive queries by total CPU time found.", x, ""));
+            return results.Select(x => new Finding($"Expensive query: executed {x.execution_count} time(s), total CPU {x.total_worker_time} ms.", x, "", FindingSeverity.Warning, "Query"));
         }
     }
 }

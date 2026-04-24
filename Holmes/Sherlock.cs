@@ -49,7 +49,7 @@ namespace Holmes
         /// <returns>The results</returns>
         public async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
         {
-            return (await ProviderManager.AnalyzeAsync(connection).ConfigureAwait(false)) ?? Array.Empty<Finding>();
+            return (await ProviderManager.AnalyzeAsync(connection).ConfigureAwait(false)) ?? [];
         }
     }
 }

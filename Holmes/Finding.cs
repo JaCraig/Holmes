@@ -19,7 +19,22 @@ using System.Collections.Generic;
 namespace Holmes
 {
     /// <summary>
-    /// Data class for an individual
+    /// Severity level of a <see cref="Finding"/>.
+    /// </summary>
+    public enum FindingSeverity
+    {
+        /// <summary>Informational — no action required.</summary>
+        Info,
+
+        /// <summary>Should be investigated and likely remediated.</summary>
+        Warning,
+
+        /// <summary>Requires immediate attention.</summary>
+        Critical
+    }
+
+    /// <summary>
+    /// Data class for an individual finding.
     /// </summary>
     public class Finding
     {
@@ -29,12 +44,23 @@ namespace Holmes
         /// <param name="text">The text.</param>
         /// <param name="metrics">The metrics.</param>
         /// <param name="fix">The fix.</param>
-        public Finding(string text, IDictionary<string, object> metrics, string fix)
+        /// <param name="severity">The severity of the finding.</param>
+        /// <param name="category">The category of the finding (e.g. "Index", "Query", "Storage").</param>
+        public Finding(string text, IDictionary<string, object> metrics, string fix,
+            FindingSeverity severity = FindingSeverity.Info, string category = "")
         {
             Text = text ?? "";
             Metrics = metrics ?? new Dictionary<string, object>();
             Fix = fix ?? "";
+            Severity = severity;
+            Category = category ?? "";
         }
+
+        /// <summary>
+        /// Gets the category of the finding (e.g. "Index", "Query", "Storage").
+        /// </summary>
+        /// <value>The category of the finding.</value>
+        public string Category { get; }
 
         /// <summary>
         /// Gets the fix (usually a SQL statement) for the finding.
@@ -49,6 +75,12 @@ namespace Holmes
         public IDictionary<string, object> Metrics { get; }
 
         /// <summary>
+        /// Gets the severity of the finding.
+        /// </summary>
+        /// <value>The severity of the finding.</value>
+        public FindingSeverity Severity { get; }
+
+        /// <summary>
         /// Gets the text of the finding.
         /// </summary>
         /// <value>The text of the finding.</value>
@@ -58,9 +90,6 @@ namespace Holmes
         /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return Text;
-        }
+        public override string ToString() => Text;
     }
 }

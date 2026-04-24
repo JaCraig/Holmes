@@ -33,7 +33,7 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the query string.
@@ -54,7 +54,7 @@ group by a.name";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.Select(x => new Finding("The database size.", x, ""));
+            return results.Select(x => new Finding($"Database '{x.name}' is {x.Size_MB} MB.", x, "", FindingSeverity.Info, "Storage"));
         }
     }
 }

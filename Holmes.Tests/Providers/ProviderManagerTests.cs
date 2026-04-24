@@ -26,5 +26,13 @@ namespace Holmes.Tests.Providers
             var TestObject = new ProviderManager(new IAnalyzer[] { new ExpensiveQueries(), new MissingIndex(), new OverlappingIndexes(), new UnusedIndexes() }, Helper);
             Assert.NotNull(TestObject);
         }
+
+        [Fact]
+        public async Task AnalyzeAsync_NullConnection_ReturnsEmpty()
+        {
+            var TestObject = GetServiceProvider().GetService<ProviderManager>();
+            var Results = await TestObject.AnalyzeAsync(null);
+            Assert.Empty(Results);
+        }
     }
 }

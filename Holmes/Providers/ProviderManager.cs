@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Holmes.Providers
@@ -39,7 +40,7 @@ namespace Holmes.Providers
         public ProviderManager(IEnumerable<IAnalyzer> analyzers, SQLHelper helper)
         {
             Analyzers = new ListMapping<DbProviderFactory, IAnalyzer>();
-            foreach (var Analyzer in analyzers ?? Array.Empty<IAnalyzer>())
+            foreach (var Analyzer in analyzers ?? [])
             {
                 foreach (var SupportedFactory in Analyzer.SupportedFactories)
                 {
@@ -66,22 +67,24 @@ namespace Holmes.Providers
         /// Analyzes the specified connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The results</returns>
-        public async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection)
+        public async Task<IEnumerable<Finding>> AnalyzeAsync(IConnection connection, CancellationToken cancellationToken = default)
         {
             if (connection is null || !Analyzers.ContainsKey(connection.Factory))
-                return Array.Empty<Finding>();
-            Batch.CreateBatch(connection);
+                return [];
+            var BatchCopy = Batch.Copy();
+            BatchCopy.CreateBatch(connection);
             var AnalyzersUsed = Analyzers[connection.Factory].ToArray();
-            for (int x = 0; x < AnalyzersUsed.Length; ++x)
+            for (int X = 0; X < AnalyzersUsed.Length; ++X)
             {
-                AnalyzersUsed[x].AddQuery(Batch);
+                AnalyzersUsed[X].AddQuery(BatchCopy);
             }
-            var Result = await Batch.ExecuteAsync().ConfigureAwait(false);
+            var Result = await BatchCopy.ExecuteAsync().ConfigureAwait(false);
             var ReturnValue = new List<Finding>();
-            for (int x = 0; x < AnalyzersUsed.Length; ++x)
+            for (int X = 0; X < AnalyzersUsed.Length; ++X)
             {
-                ReturnValue.Add(AnalyzersUsed[x].Analyze(Result[x]));
+                ReturnValue.AddRange(AnalyzersUsed[X].Analyze(Result[X]));
             }
             return ReturnValue;
         }

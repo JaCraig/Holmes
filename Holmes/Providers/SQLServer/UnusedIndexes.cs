@@ -33,7 +33,7 @@ namespace Holmes.Providers.SQLServer
         /// Gets the factory the analyzer supports.
         /// </summary>
         /// <value>Gets the factory the analyzer supports.</value>
-        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public override DbProviderFactory[] SupportedFactories { get; } = new DbProviderFactory[] { SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the query string.
@@ -74,7 +74,7 @@ ORDER BY (dm_ius.user_scans + dm_ius.user_lookups) DESC";
         /// <returns>The list of suggestions for the database.</returns>
         public override IEnumerable<Finding> Analyze(IEnumerable<dynamic> results)
         {
-            return results.Select(x => new Finding($"Potential index ({x.IndexName}) for removal for {x.ObjectName}.", x, x.drop_statement));
+            return results.Select(x => new Finding($"Potential index ({x.IndexName}) for removal for {x.ObjectName}.", x, x.drop_statement, FindingSeverity.Warning, "Index"));
         }
     }
 }
