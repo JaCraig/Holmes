@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.0"></a>
+## [5.1.0](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.0) (2026-04-24)
+
+### Features
+
+* **SQLServer:** implement new analyzers and enhance existing ones ([b90825a](https://www.github.com/JaCraig/Holmes/commit/b90825a407df38c1a433fb003db704eb09cd9f3f))
+
 <a name="5.0.150"></a>
 ## [5.0.150](https://www.github.com/JaCraig/Holmes/releases/tag/v5.0.150) (2026-04-23)
 
