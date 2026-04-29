@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.4"></a>
+## [5.1.4](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.4) (2026-04-29)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([600ac61](https://www.github.com/JaCraig/Holmes/commit/600ac6111b068810923a36ec4363e182064b2734))
+
+### Other
+
+* Merge pull request #406 from JaCraig/dependabot/nuget/Holmes/dependencies-eada56d4b6 ([45c436b](https://www.github.com/JaCraig/Holmes/commit/45c436b19f8691282a6ae0403e3361afb95b25d6))
+
 <a name="5.1.3"></a>
 ## [5.1.3](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.3) (2026-04-28)
 
