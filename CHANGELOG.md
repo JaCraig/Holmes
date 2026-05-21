@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.8"></a>
+## [5.1.8](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.8) (2026-05-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([813fb2e](https://www.github.com/JaCraig/Holmes/commit/813fb2e012c39c09e3a128615fae343f64d71e78))
+
+### Other
+
+* Merge pull request #411 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-598e1491c9 ([f2f1732](https://www.github.com/JaCraig/Holmes/commit/f2f1732f287a661b5ab859843146572f1fa9be45))
+* Merge pull request #412 from JaCraig/dependabot/nuget/Holmes/dependencies-090e825f82 ([1441a2e](https://www.github.com/JaCraig/Holmes/commit/1441a2eb7b9af2129ade1dccc26f0f4e6c750a3f))
+* add Copilot instructions for commit messages ([e6dee27](https://www.github.com/JaCraig/Holmes/commit/e6dee27ef1dc1b994ccd1322070ba0fc4c15f1b6))
+* Bump the dependencies group with 3 updates ([ae90e1d](https://www.github.com/JaCraig/Holmes/commit/ae90e1defd715dc9b7ad7aef5080a89043f6f880))
+
 <a name="5.1.7"></a>
 ## [5.1.7](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.7) (2026-05-15)
 
