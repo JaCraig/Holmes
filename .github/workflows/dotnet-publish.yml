@@ -42,8 +42,7 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'chore(release):')"
     timeout-minutes: 45
     permissions:
-      contents: read
-      pull-requests: write
+      contents: write
     env:
       BUILD_CONFIG: "Release"
       SOLUTION_FILE: "${{ inputs.solution || 'Holmes.sln' }}"
