@@ -42,7 +42,8 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'chore(release):')"
     timeout-minutes: 45
     permissions:
-      contents: write
+      contents: read
+      pull-requests: write
     env:
       BUILD_CONFIG: "Release"
       SOLUTION_FILE: "${{ inputs.solution || 'Holmes.sln' }}"
@@ -170,7 +171,7 @@ jobs:
         if: steps.versionize.outcome == 'success'
         uses: ad-m/github-push-action@v1.3.0
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ github.token }}
           branch: ${{ github.ref }}
           force: true
           tags: true
