@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.9"></a>
+## [5.1.9](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.9) (2026-05-26)
+
+### Bug Fixes
+
+* **workflow:** adjust permissions and token usage in dotnet-publish.yml ([24170e7](https://www.github.com/JaCraig/Holmes/commit/24170e72c5c5377ea95287039f1e7bd9da6472af))
+* **workflow:** update permissions for contents in dotnet-publish.yml ([6ffdedd](https://www.github.com/JaCraig/Holmes/commit/6ffdedd648fe6530ed533f6134e1e670c3d1f1c4))
+
+### Other
+
+* Merge pull request #413 from JaCraig/dependabot/github_actions/dependencies-669470734f ([59c2153](https://www.github.com/JaCraig/Holmes/commit/59c2153cd66af557aa1ea2c7d646caebfd9b024e))
+* Bump ad-m/github-push-action in the dependencies group ([2c7c6a1](https://www.github.com/JaCraig/Holmes/commit/2c7c6a1510bc07d3694d2d41360f56a7f9739c72))
+
 <a name="5.1.8"></a>
 ## [5.1.8](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.8) (2026-05-21)
 
