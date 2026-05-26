@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.10"></a>
+## [5.1.10](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.10) (2026-05-26)
+
+### Bug Fixes
+
+* **dependabot:** change update interval for Example package ([ebfe1e1](https://www.github.com/JaCraig/Holmes/commit/ebfe1e135f9c652483e4d08885cc9f9249815dac))
+
+### Other
+
+* **dependabot:** update schedule interval and token usage ([8bfbc26](https://www.github.com/JaCraig/Holmes/commit/8bfbc268001c8af4444914b3bbc99f4101839a2a))
+
 <a name="5.1.9"></a>
 ## [5.1.9](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.9) (2026-05-26)
 
