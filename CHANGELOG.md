@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.11"></a>
+## [5.1.11](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.11) (2026-06-23)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([395ffc1](https://www.github.com/JaCraig/Holmes/commit/395ffc15627f2d6431c88cb832a860919123d973))
+* Bump the dependencies group with 1 update ([08938c5](https://www.github.com/JaCraig/Holmes/commit/08938c50988d6bd21eedc734c163422710f245e3))
+* Bump the dependencies group with 1 update ([34ebd57](https://www.github.com/JaCraig/Holmes/commit/34ebd575f4625096aa9cfac47cd4bb68f036a749))
+
+### Other
+
+* Merge pull request #414 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-041891a2d4 ([b0aec92](https://www.github.com/JaCraig/Holmes/commit/b0aec92a3f8956b5a70877c9f657721019c07619))
+* Merge pull request #415 from JaCraig/dependabot/nuget/Holmes/dependencies-b38be28be4 ([52352f2](https://www.github.com/JaCraig/Holmes/commit/52352f2c463d44eadf6d5419e091d1c06884e3ec))
+* Merge pull request #416 from JaCraig/dependabot/github_actions/dependencies-48e1889820 ([a492e92](https://www.github.com/JaCraig/Holmes/commit/a492e92966e90cd1c0d427bcafb1be62ddbcad05))
+* Merge pull request #417 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-6fb63528ec ([827bf97](https://www.github.com/JaCraig/Holmes/commit/827bf977fc48f9548f9d31a68b296276492ca1f0))
+* Merge pull request #418 from JaCraig/dependabot/nuget/Holmes/dependencies-62fc74d9c8 ([12856e7](https://www.github.com/JaCraig/Holmes/commit/12856e7299c4bc93bb4f246ac1bc59fbb9f1af0d))
+* Merge pull request #419 from JaCraig/dependabot/nuget/Holmes/dependencies-991ee26f7c ([8c8afad](https://www.github.com/JaCraig/Holmes/commit/8c8afad1a265fb0b74a5dd4fbedd96b85ff36aac))
+* Merge pull request #420 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-6375374326 ([246c336](https://www.github.com/JaCraig/Holmes/commit/246c336e32d5d2ca659c922b5712a851e36832ea))
+* Merge pull request #421 from JaCraig/dependabot/github_actions/dependencies-640176b5ab ([1f86b60](https://www.github.com/JaCraig/Holmes/commit/1f86b6033e7338de4b26684f49e437e7c58957ce))
+* Bump actions/checkout from 6 to 7 in the dependencies group ([5e231bd](https://www.github.com/JaCraig/Holmes/commit/5e231bdbb65032d2236bb6f37e51f03543aca1e4))
+* Bump actions/setup-dotnet in the dependencies group ([048aee9](https://www.github.com/JaCraig/Holmes/commit/048aee91bc279f734517d767e98e922436bb6a38))
+* Bump Microsoft.NET.Test.Sdk from 18.5.1 to 18.6.0 ([3b97489](https://www.github.com/JaCraig/Holmes/commit/3b9748933298f7534eb751ac1de5fb1a4553245f))
+* Bump the dependencies group with 1 update ([aff53c6](https://www.github.com/JaCraig/Holmes/commit/aff53c680c33d3397f98c5e02640f2047942b58b))
+* Bump the dependencies group with 1 update ([9a5af55](https://www.github.com/JaCraig/Holmes/commit/9a5af555018dce1e339ae99994a8db1659a6f7b4))
+* **dependabot:** remove token secret from workflow ([63c10f9](https://www.github.com/JaCraig/Holmes/commit/63c10f9439697830b10e6e7613720a35ccc91c57))
+
 <a name="5.1.10"></a>
 ## [5.1.10](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.10) (2026-05-26)
 
