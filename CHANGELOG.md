@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.13"></a>
+## [5.1.13](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.13) (2026-07-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([917ac81](https://www.github.com/JaCraig/Holmes/commit/917ac81def3a8b3a99458c4632ba95673b438ffd))
+
+### Other
+
+* Merge pull request #425 from JaCraig/dependabot/nuget/Holmes/dependencies-5c1cd76f7e ([772335f](https://www.github.com/JaCraig/Holmes/commit/772335f6c75ad6fc27253b5e343af9f798207ffc))
+* Merge pull request #426 from JaCraig/dependabot/github_actions/dependencies-c60b243b03 ([dc6a576](https://www.github.com/JaCraig/Holmes/commit/dc6a576096d16b9d7de9d2fbf4fb8976785fa5f1))
+* Merge pull request #427 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-c309d5b170 ([4166865](https://www.github.com/JaCraig/Holmes/commit/4166865232222d7bf464a256482304216322077a))
+* Bump actions/setup-dotnet in the dependencies group ([21c0955](https://www.github.com/JaCraig/Holmes/commit/21c0955de8ca1f14cd2432e6330c154a4fa6e8c2))
+* Bump the dependencies group with 2 updates ([54504f8](https://www.github.com/JaCraig/Holmes/commit/54504f84171be39da16977d853e04bbd227c7ecb))
+
 <a name="5.1.12"></a>
 ## [5.1.12](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.12) (2026-06-30)
 
