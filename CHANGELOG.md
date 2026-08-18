@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.14"></a>
+## [5.1.14](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.14) (2026-08-18)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([56c10dd](https://www.github.com/JaCraig/Holmes/commit/56c10dd23ed0284cf2225f8feb1ac4cf6ebb6d19))
+* Bump the dependencies group with 2 updates ([43af31c](https://www.github.com/JaCraig/Holmes/commit/43af31c6af31d754a66b77aa640a73616de8ccd3))
+
+### Other
+
+* Merge pull request #428 from JaCraig/dependabot/nuget/Holmes/dependencies-a2a126ecb3 ([93ea9f2](https://www.github.com/JaCraig/Holmes/commit/93ea9f25b5d9010446f34ffb0c7e8192396824d8))
+* Merge pull request #429 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([9ca9746](https://www.github.com/JaCraig/Holmes/commit/9ca9746f87165c1666aeb500c6d60b90554282db))
+* Merge pull request #430 from JaCraig/dependabot/nuget/Holmes/dependencies-637020aa5a ([02b5517](https://www.github.com/JaCraig/Holmes/commit/02b5517a203687ed209a973137e7e0140a63e156))
+* Merge pull request #431 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-38e859b779 ([becae02](https://www.github.com/JaCraig/Holmes/commit/becae024849418c8c6799307e82d98f67e146224))
+* Bump the dependencies group with 1 update ([679f32d](https://www.github.com/JaCraig/Holmes/commit/679f32d566d11102e1678b5b2ff1dd370e5e638f))
+* Bump the dependencies group with 3 updates ([ebe32d0](https://www.github.com/JaCraig/Holmes/commit/ebe32d078ea6a0dd2ba5c376b4d07bbe5567d480))
+
 <a name="5.1.13"></a>
 ## [5.1.13](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.13) (2026-07-21)
 
