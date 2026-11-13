@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.0"></a>
+## [6.0.0](https://www.github.com/JaCraig/Holmes/releases/tag/v6.0.0) (2026-11-13)
+
+### Features
+
+* update .NET SDK version and dependencies ([b29f310](https://www.github.com/JaCraig/Holmes/commit/b29f3105a2c5dd0e610fdda937614c99973f166a))
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([129c3f7](https://www.github.com/JaCraig/Holmes/commit/129c3f715c48452dd3318eabe17fa00d2d660761))
+
+### Breaking Changes
+
+* update .NET SDK version and dependencies ([b29f310](https://www.github.com/JaCraig/Holmes/commit/b29f3105a2c5dd0e610fdda937614c99973f166a))
+
+### Other
+
+* Merge pull request #441 from JaCraig/dependabot/github_actions/dependencies-39799580c0 ([309f5d8](https://www.github.com/JaCraig/Holmes/commit/309f5d8584aabdd03dde90c1e4aaccd56e07a862))
+* Merge pull request #442 from JaCraig/dependabot/nuget/Holmes.Tests/dependencies-3fd67bb4a6 ([83be053](https://www.github.com/JaCraig/Holmes/commit/83be0538a15bef3a0d56c44f1eaab118537bd5b9))
+* Merge pull request #443 from JaCraig/dependabot/nuget/Holmes/dependencies-7d8d28bf72 ([401567b](https://www.github.com/JaCraig/Holmes/commit/401567b0b4b06f4f6f093023fd753302ae9c93e2))
+* Bump actions/setup-dotnet ([ea48294](https://www.github.com/JaCraig/Holmes/commit/ea48294ac286807ecbcf9582449579f65ed52623))
+* Bump the dependencies group with 2 updates ([8fc1af6](https://www.github.com/JaCraig/Holmes/commit/8fc1af6f223434010abb9987bbdb9ede60dbaa67))
+
 <a name="5.1.15"></a>
 ## [5.1.15](https://www.github.com/JaCraig/Holmes/releases/tag/v5.1.15) (2026-11-08)
 
